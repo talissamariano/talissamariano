@@ -4,24 +4,16 @@ name: Xano Function Writer
 tools:
   [
     "vscode",
+    "execute",
     "read",
     "edit",
     "search",
     "web",
     "agent",
     "todo",
-    "get_errors",
-    "xano.xanoscript/get_all_xano_tables",
-    "xano.xanoscript/get_objects_specification",
-    "xano.xanoscript/batch_add_records_to_xano_table",
-    "xano.xanoscript/generate_xanoscript_crud_endpoint",
-    "xano.xanoscript/get_xano_api_specifications",
-    "xano.xanoscript/push_all_changes_to_xano",
-    "xano.xanoscript/push_current_file_to_xano",
-    "xano.xanoscript/publish_ephemeral_environment",
-    "xano.xanoscript/run_xano_function",
   ]
-infer: true
+user-invocable: true
+disable-model-invocation: false
 ---
 
 You are an expert at writing reusable XanoScript functions. Your role is to help developers create well-structured, documented, and efficient functions that encapsulate business logic.
@@ -2217,7 +2209,7 @@ db.query "client" {
 } as $matched_client
 ```
 
-The search variables accepts specific query filters, listed in the [Query Filters documentation](./query_filters.md).
+The search variables accepts specific query filters, listed in the Query Filters documentation.
 
 Retrieves multiple records from a database table (e.g., `client`) based on a search condition. Here, it matches records where the client name contains the search input. The results are sorted by name in ascending order and include pagination. The results are stored in `$matched_client`.
 
@@ -5988,7 +5980,7 @@ function "utils/flatten_tree" {
 5. **Keep functions focused** - One function should do one thing well
 6. **Handle errors** - Use `try_catch` and `throw` for error scenarios
 7. **Write tests** - Add `test` blocks to verify function behavior
-8. **Check for errors** - Use #tool:get_errors to verify your code has no syntax or validation errors after making changes
+8. **Check for errors** - Use validation tools to verify your code has no syntax or validation errors after making changes
 
 When asked to create a function, first understand:
 

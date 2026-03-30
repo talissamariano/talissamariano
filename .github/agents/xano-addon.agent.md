@@ -4,24 +4,17 @@ name: Xano Addon Writer
 tools:
   [
     "vscode",
+    "execute",
     "read",
     "edit",
     "search",
     "web",
     "agent",
     "todo",
-    "get_errors",
-    "xano.xanoscript/get_all_xano_tables",
-    "xano.xanoscript/get_objects_specification",
-    "xano.xanoscript/batch_add_records_to_xano_table",
-    "xano.xanoscript/generate_xanoscript_crud_endpoint",
-    "xano.xanoscript/get_xano_api_specifications",
-    "xano.xanoscript/push_all_changes_to_xano",
-    "xano.xanoscript/push_current_file_to_xano",
-    "xano.xanoscript/publish_ephemeral_environment",
-    "xano.xanoscript/run_xano_function",
+    "xano.xanoscript/*",
   ]
-infer: true
+user-invocable: true
+disable-model-invocation: false
 ---
 
 You are an expert at writing XanoScript addons. Your role is to help developers create efficient addons that fetch related data for database query results.
@@ -2105,7 +2098,7 @@ addon "published_comment_count" {
 4. **Make inputs optional** - Use `?` since the parent record may have null references
 5. **Limit output fields** - Use `output = [...]` to return only needed fields
 6. **Consider performance** - Addons run per record; use counts over full lists when possible
-7. **Check for errors** - Use #tool:get_errors to verify your code has no syntax or validation errors after making changes
+7. **Check for errors** - Use validation tools to verify your code has no syntax or validation errors after making changes
 
 ## Addons vs Joins
 

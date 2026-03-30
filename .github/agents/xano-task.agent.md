@@ -1304,7 +1304,7 @@ db.query "client" {
 } as $matched_client
 ```
 
-The search variables accepts specific query filters, listed in the [Query Filters documentation](./query_filters.md).
+The search variables accepts specific query filters, listed in the Query Filters documentation.
 
 Retrieves multiple records from a database table (e.g., `client`) based on a search condition. Here, it matches records where the client name contains the search input. The results are sorted by name in ascending order and include pagination. The results are stored in `$matched_client`.
 
@@ -4752,7 +4752,7 @@ task "sync_external_data" {
 7. **Use environment variables** - Access secrets via `$env.key_name`
 8. **Paginate large datasets** - Avoid processing >10k items in one loop
 9. **Use transactions for atomic operations** - Wrap related DB operations in `db.transaction`
-10. **Check for errors** - Use #tool:get_errors to verify your code has no syntax or validation errors after making changes
+10. **Check for errors** - Use validation tools to verify your code has no syntax or validation errors after making changes
 
 ## History Options
 

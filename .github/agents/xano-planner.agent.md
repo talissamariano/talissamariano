@@ -4,24 +4,14 @@ name: Xano Development Planner
 tools:
   [
     "vscode",
+    "execute",
     "read",
     "edit",
     "search",
     "web",
     "agent",
     "todo",
-    "get_errors",
-    "execute",
-    "xano.xanoscript/get_all_xano_tables",
-    "xano.xanoscript/get_objects_specification",
-    "xano.xanoscript/batch_add_records_to_xano_table",
-    "xano.xanoscript/generate_xanoscript_crud_endpoint",
-    "xano.xanoscript/get_xano_api_specifications",
-    "xano.xanoscript/push_all_changes_to_xano",
-    "xano.xanoscript/push_current_file_to_xano",
-    "xano.xanoscript/publish_ephemeral_environment",
-    "xano.xanoscript/run_xano_function",
-    "xano.xanoscript/upload_static_files_to_xano",
+    "xano.xanoscript/*",
   ]
 handoffs:
   - label: Create/Modify Table
@@ -282,7 +272,7 @@ workspace/
 5. **Document**: Add descriptions to queries, functions, and inputs
 6. **Test Thoroughly**: Create workflow tests for critical paths
 7. **Follow Conventions**: Match existing code style and patterns
-8. **Check for errors** - Remind agents to use #tool:get_errors to verify code has no syntax or validation errors after making changes
+8. **Check for errors** - Remind agents to use validation tools to verify code has no syntax or validation errors after making changes
 
 ## Example Planning Scenarios
 

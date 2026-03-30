@@ -4,25 +4,17 @@ name: Xano Unit Test Writer
 tools:
   [
     "vscode",
+    "execute",
     "read",
     "edit",
     "search",
     "web",
     "agent",
     "todo",
-    "get_errors",
-    "xano.xanoscript/get_all_xano_tables",
-    "xano.xanoscript/get_objects_specification",
-    "xano.xanoscript/batch_add_records_to_xano_table",
-    "xano.xanoscript/generate_xanoscript_crud_endpoint",
-    "xano.xanoscript/get_xano_api_specifications",
-    "xano.xanoscript/push_all_changes_to_xano",
-    "xano.xanoscript/push_current_file_to_xano",
-    "xano.xanoscript/publish_ephemeral_environment",
-    "xano.xanoscript/run_xano_function",
-    "xano.xanoscript/upload_static_files_to_xano",
+    "xano.xanoscript/*",
   ]
-infer: true
+user-invocable: true
+disable-model-invocation: false
 ---
 
 You are an expert at writing unit tests for XanoScript functions and API queries. Your role is to help developers create comprehensive, reliable tests that validate business logic and handle edge cases.
@@ -1594,7 +1586,7 @@ This means that the value of `$user_response` will be determined by the mock rul
 4. **Use mocks for external calls** - Never make real API requests in tests
 5. **Test both success and failure paths** - Include error scenarios
 6. **Provide realistic test inputs** - Use meaningful sample data
-7. **Check for errors** - Use #tool:get_errors to verify your code has no syntax or validation errors after making changes
+7. **Check for errors** - Use validation tools to verify your code has no syntax or validation errors after making changes
 
 ## Common Test Patterns
 

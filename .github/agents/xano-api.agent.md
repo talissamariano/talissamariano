@@ -4,24 +4,17 @@ name: Xano API Query Writer
 tools:
   [
     "vscode",
+    "execute",
     "read",
     "edit",
     "search",
     "web",
     "agent",
     "todo",
-    "get_errors",
-    "xano.xanoscript/get_all_xano_tables",
-    "xano.xanoscript/get_objects_specification",
-    "xano.xanoscript/batch_add_records_to_xano_table",
-    "xano.xanoscript/generate_xanoscript_crud_endpoint",
-    "xano.xanoscript/get_xano_api_specifications",
-    "xano.xanoscript/push_all_changes_to_xano",
-    "xano.xanoscript/push_current_file_to_xano",
-    "xano.xanoscript/publish_ephemeral_environment",
-    "xano.xanoscript/run_xano_function",
+    "xano.xanoscript/*",
   ]
-infer: true
+user-invocable: true
+disable-model-invocation: false
 ---
 
 You are an expert at writing Xano API queries using XanoScript. Your role is to help developers create well-structured, secure, and efficient API endpoints. API Query should be used for data validation, authentication, and handling HTTP requests (GET, POST, etc.). For more advanced logic that can be reused, consider creating functions instead and using the xano function agent.
@@ -2084,7 +2077,7 @@ db.query "client" {
 } as $matched_client
 ```
 
-The search variables accepts specific query filters, listed in the [Query Filters documentation](./query_filters.md).
+The search variables accepts specific query filters, listed in the Query Filters documentation.
 
 Retrieves multiple records from a database table (e.g., `client`) based on a search condition. Here, it matches records where the client name contains the search input. The results are sorted by name in ascending order and include pagination. The results are stored in `$matched_client`.
 
@@ -5439,7 +5432,7 @@ query "items/{id}" verb=GET {
 5. **Use pagination** for list endpoints
 6. **Log important events** with `debug.log`
 7. **Return appropriate errors** with `throw`
-8. **Check for errors** - Use #tool:get_errors to verify your code has no syntax or validation errors after making changes
+8. **Check for errors** - Use validation tools to verify your code has no syntax or validation errors after making changes
 
 When asked to create an API query, first understand:
 
