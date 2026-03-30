@@ -17,16 +17,24 @@ query "subjects/{id}" verb=PATCH {
   }
 
   stack {
-    // Check ownership/account and existence
+    // Check existence and account membership
     db.query subject {
-      where = $db.subject.id == $input.id && $db.subject.account_id == $auth.account_id &&
-        ($auth.role == "admin" || $db.subject.user_id == $auth.id)
+      where = $db.subject.id == $input.id && $db.subject.account_id == $auth.account_id
       return = {type: "single"}
     } as $subject
   
     precondition ($subject != null) {
       error_type = "notfound"
       error = "Subject not found or access denied"
+    }
+  
+    conditional {
+      if ($auth.role != "admin") {
+        precondition ($subject.user_id == $auth.id) {
+          error_type = "forbidden"
+          error = "Access denied"
+        }
+      }
     }
   
     // Prepare update data

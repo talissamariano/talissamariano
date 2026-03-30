@@ -9,7 +9,7 @@ table subject {
     uuid account_id {
       table = "account"
     }
-
+  
     // Reference to the user who owns this subject
     uuid user_id {
       table = "user"
@@ -43,7 +43,7 @@ table subject {
   
     // Optional semester identifier (e.g. 2025.1)
     text semester?
-
+  
     // Optional credits for the subject, between 0 and 12
     decimal credits? filters=min:0|max:12
   
@@ -64,8 +64,14 @@ table subject {
       type : "btree|unique"
       field: [{name: "user_id"}, {name: "code"}]
     }
-    {type: "btree", field: [{name: "account_id"}, {name: "user_id"}]}
-    {type: "btree", field: [{name: "account_id"}, {name: "status"}]}
+    {
+      type : "btree"
+      field: [{name: "account_id"}, {name: "user_id"}]
+    }
+    {
+      type : "btree"
+      field: [{name: "account_id"}, {name: "status"}]
+    }
     {type: "btree", field: [{name: "user_id"}, {name: "status"}]}
     {type: "btree", field: [{name: "user_id"}]}
   ]

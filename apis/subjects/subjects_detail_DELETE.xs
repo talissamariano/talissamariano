@@ -9,16 +9,24 @@ query "subjects/{id}" verb=DELETE {
   }
 
   stack {
-    // Verify the subject exists and belongs to the authenticated user/account
+    // Verify the subject exists and belongs to the authenticated account
     db.query subject {
-      where = $db.subject.id == $input.id && $db.subject.account_id == $auth.account_id &&
-        ($auth.role == "admin" || $db.subject.user_id == $auth.id)
+      where = $db.subject.id == $input.id && $db.subject.account_id == $auth.account_id
       return = {type: "single"}
     } as $subject
   
     precondition ($subject != null) {
       error_type = "notfound"
       error = "Subject not found or does not belong to you."
+    }
+  
+    conditional {
+      if ($auth.role != "admin") {
+        precondition ($subject.user_id == $auth.id) {
+          error_type = "forbidden"
+          error = "Access denied"
+        }
+      }
     }
   
     // Soft-delete by status = archived
@@ -31,10 +39,10 @@ query "subjects/{id}" verb=DELETE {
     // Log the deletion
     debug.log {
       value = {
-        event      : "subject_deleted",
-        subject_id : $input.id,
-        user_id    : $auth.id,
-        account_id : $auth.account_id
+        event     : "subject_deleted"
+        subject_id: $input.id
+        user_id   : $auth.id
+        account_id: $auth.account_id
       }
     }
   }
